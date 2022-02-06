@@ -7,6 +7,8 @@ import Splash from "../pages/Splash";
 import Feed from "../pages/Feed";
 import React from "react";
 import Article from "../pages/Article";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 
 function AppStack() {
@@ -16,6 +18,8 @@ function AppStack() {
         <Route index element={<Splash/>}/>
         <Route path="feed" element={<Feed/>}/>
         <Route path="review/:reviewId" element={<Article/>}/>
+        <Route path="login" element={<Login/>}/>
+         <Route path="register" element={<Register/>}/>
       </Route>
     </Routes>
   )

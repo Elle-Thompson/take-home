@@ -18,6 +18,8 @@ function MainNav() {
           <Navbar.Collapse id="top-global-nav">
             <Nav className="me-auto">
               <Nav.Link href="feed" active={location.pathname.startsWith('/feed')}>Feed</Nav.Link>
+              <Nav.Link href="login" active={location.pathname.startsWith('/login')}>Login</Nav.Link>
+              <Nav.Link href="register" active={location.pathname.startsWith('/register')}>Register</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
