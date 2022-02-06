@@ -27,6 +27,7 @@ function Feed() {
   return (
     <>
     <MainNav/>
+    
       {isLoading && <>loading</>}
       {apiResults &&
         apiResults.map((result) => (

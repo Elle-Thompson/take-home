@@ -10,7 +10,7 @@ function Article() {
 
   const API = new ApiService({});
   const [apiResults, setApiResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     API.get("reviews")
@@ -18,33 +18,48 @@ function Article() {
         setApiResults(json.data);
       })
       .catch((err) => console.error(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
+      // .finally(() => {
+      //   setIsLoading(false);
+      // });
   }, []);
 
   console.log(reviewId);
-  return (
-    <Container>
-      <h1>Beer Name</h1>
-      <h2>Posted At</h2>
+
+
+  const reviewData = apiResults.map((names) => {
+    console.log(names)
+return [
+<Container>
+      <h1> {names.beer.name} </h1>
+      <h2>Posted at: {names.created_at}</h2>
       <Row>
         <Col>
-          Reviewed By {reviewId}
+          Reviewed By: {names.reviewer.name}
         </Col>
         <Col>
-          Rating
+          Rating: {names.rating}
         </Col>
         <Col>
-          Score
+          Score: {names.score}
         </Col>
       </Row>
-      <p>
-        Article Content
+      <br/>
+      <p>  
+      {names.content}
       </p>
       <Button as={Link} to="/feed">Back</Button>
-    </Container>
-  )
+    </Container> 
+]
 }
+)
+  
+  return (
+    <>
+    <h2>Reviews</h2>
+   {reviewData}
+    
+  </>
+  ) }
+
 
 export default Article;
