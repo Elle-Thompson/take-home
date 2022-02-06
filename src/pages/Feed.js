@@ -21,13 +21,12 @@ function Feed() {
       });
   }, []);
 
-  // console.log(apiResults);
-  console.log(apiResults[0]);
+  console.log(apiResults);
+  // console.log(apiResults[0]);
 
   return (
     <>
     <MainNav/>
-    
       {isLoading && <>loading</>}
       {apiResults &&
         apiResults.map((result) => (
