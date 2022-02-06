@@ -1,7 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {Col, Row} from "react-bootstrap";
-import {ApiService} from "../services/ApiService";
-import {Link} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Card, Row } from "react-bootstrap";
+import { ApiService } from "../services/ApiService";
+import { Link } from "react-router-dom";
+import "../assets/sass/feed.scss";
+import MainNav from "../components/MainNav";
 
 function Feed() {
   const API = new ApiService({});
@@ -19,19 +21,31 @@ function Feed() {
       });
   }, []);
 
+  console.log(apiResults);
+  // console.log(apiResults[0]);
+
   return (
     <>
-      {isLoading && (<>loading</>)}
-      {apiResults && (
-          apiResults.map(result => (
-            <Row key={result.uuid}>
-              <Col>
-                <Link to={`/review/${result.uuid}`}>{result.uuid}</Link>
-              </Col>
-            </Row>
-          ))
-      )}
-    </>)
+    <MainNav/>
+      {isLoading && <>loading</>}
+      {apiResults &&
+        apiResults.map((result) => (
+          <Card>
+            <Card.Body>
+              <Card.Title>
+                <Row key={result.uuid}>
+                  <Link to={`/review/${result.uuid}`}>{result.beer.name}</Link>
+                </Row>
+              </Card.Title>
+              <p>Origin: {result.beer.origin}</p>
+              Rating: {result.rating}
+            </Card.Body>
+          </Card>
+
+          //Added card and changed display items from uuid to item name and rating
+        ))}
+    </>
+  );
 }
 
 export default Feed;
